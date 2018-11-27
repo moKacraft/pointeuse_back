@@ -1,10 +1,12 @@
 FROM node:9-alpine
 
-COPY package.json .
+WORKDIR /pointeuse
+
+COPY package.json /pointeuse
 
 RUN npm install
 
-COPY . . 
+COPY . /pointeuse
 
 ENV NODE_ENV=production
 
