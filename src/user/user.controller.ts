@@ -33,7 +33,7 @@ export class UserController {
     }
 
     @Get(':_id')
-    async show(@Param('_id') id): Promise<User> {
+    async show(@Param('_id') id): Promise<User[]> {
         return this.userService.findUserById(id);
     }
 }
