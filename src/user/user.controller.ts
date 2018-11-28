@@ -13,6 +13,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
+import { ObjectID } from 'typeorm';
 
 @ApiUseTags('user')
 @Controller('user')
@@ -33,7 +34,7 @@ export class UserController {
     }
 
     @Get(':_id')
-    async show(@Param('_id') id): Promise<User[]> {
+    async show(@Param('_id') id: ObjectID): Promise<User> {
         return this.userService.findUserById(id);
     }
 }
