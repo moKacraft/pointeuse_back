@@ -15,12 +15,20 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  create(user: User) {
+  async create(user: User) {
     const userEntity = new User();
     userEntity.email = user.email;
     userEntity.firstname = user.firstname;
     userEntity.lastname = user.lastname;
     this.userRepository.save(userEntity);
     return userEntity;
+  }
+
+  async findUserById(_id: string): Promise<User> {
+    try {
+      return await this.userRepository.findOne({ _id });
+    } catch (err) {
+      return err;
+    }
   }
 }
