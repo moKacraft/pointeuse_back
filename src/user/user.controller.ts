@@ -7,13 +7,15 @@ import {
     Req,
     HttpCode,
     Param,
+    Put,
+    Delete
 } from '@nestjs/common';
 import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
-import { ObjectID } from 'typeorm';
+import { ObjectID, DeleteResult } from 'typeorm';
 
 @ApiUseTags('user')
 @Controller('user')
@@ -33,8 +35,18 @@ export class UserController {
       return('User created');
     }
 
-    @Get(':_id')
+    @Get('/:_id')
     async show(@Param('_id') id: string): Promise<User> {
+        console.log(id);
         return this.userService.findUserById(id);
     }
+
+    @Delete('/:_id')
+    async delete(@Param('_id') id: string) {
+    return this.userService.delete(id);
+    }
+
+    // @Put('/:_id')
+    // async update() {
+    // }
 }
