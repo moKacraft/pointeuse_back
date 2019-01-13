@@ -27,6 +27,9 @@ export class UserService {
   async findUserById(id: string): Promise<User> {
     try {
       const userToReturn = await this.userRepository.findOne(parseInt(id));
+      if (!userToReturn) {
+        throw new HttpException({User: 'not found'}, 401);
+      }
       return userToReturn;
     } catch (err) {
       return err;
@@ -38,8 +41,9 @@ export class UserService {
       const userToRemove = await this.findUserById(id);
       if (!userToRemove) {
         throw new HttpException({User: 'not found'}, 401);
-      }
+      } else {
       return this.userRepository.remove(userToRemove);
+      }
     } catch (err) {
       return err;
     }
