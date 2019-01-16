@@ -5,23 +5,21 @@ import {
     ObjectID,
 } from 'typeorm';
 
-@Entity('user')
-export class User {
+@Entity('positionProject')
+export class PositionProject {
   @ObjectIdColumn()
   _id: ObjectID;
 
   @Column()
-  firstname: string;
+  lattitude: string;
 
   @Column()
-  lastname: string;
-
-  @Column('text')
-  email: string;
+  longitude: string;
 
   @Column()
-  token: string;
+  position: string;
 
   @Column()
-  isAdmin: boolean;
+  address: string;
+
 }

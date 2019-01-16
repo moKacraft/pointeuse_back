@@ -11,4 +11,8 @@ export class CreateUserDto {
     @IsString() readonly lastname: string;
     @ApiModelProperty()
     @IsString() readonly email: string;
+    @ApiModelProperty()
+    @IsString() readonly token: string;
+    @ApiModelProperty()
+    @IsString() readonly isAdmin: boolean;
 }

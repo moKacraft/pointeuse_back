@@ -20,6 +20,8 @@ export class UserService {
     userEntity.email = user.email;
     userEntity.firstname = user.firstname;
     userEntity.lastname = user.lastname;
+    userEntity.token = user.token;
+    userEntity.isAdmin = user.isAdmin;
     this.userRepository.save(userEntity);
     return userEntity;
   }
