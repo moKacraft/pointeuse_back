@@ -1,4 +1,4 @@
-import { hash as bcryptHash } from 'bcrypt-nodejs';
+import { bcrypt } from 'bcrypt-nodejs';
 import { Injectable, HttpException } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
@@ -21,10 +21,8 @@ export class UserService {
     userEntity.email = user.email;
     userEntity.firstname = user.firstname;
     userEntity.lastname = user.lastname;
-    await bcryptHash(userEntity.token, 10).then((hash) => {
-      userEntity.token = hash;
-    });
-    // userEntity.token = user.token;
+
+    userEntity.token = bcrypt.hashSync(user.token);
     userEntity.isAdmin = user.isAdmin;
     this.userRepository.save(userEntity);
     return userEntity;
