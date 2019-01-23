@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString, IsBoolean } from 'class-validator';
 import { ApiModelProperty } from '@nestjs/swagger';
 import { ObjectID } from 'typeorm';
 
@@ -14,5 +14,5 @@ export class CreateUserDto {
     @ApiModelProperty()
     @IsString() readonly token: string;
     @ApiModelProperty()
-    @IsString() readonly isAdmin: boolean;
+    @IsBoolean() readonly isAdmin: boolean;
 }
