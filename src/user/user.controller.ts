@@ -8,7 +8,7 @@ import {
     HttpCode,
     Param,
     Put,
-    Delete
+    Delete,
 } from '@nestjs/common';
 import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
@@ -37,7 +37,6 @@ export class UserController {
 
     @Get('/:_id')
     async show(@Param('_id') id: string): Promise<User> {
-        console.log(id);
         return this.userService.findUserById(id);
     }
 
