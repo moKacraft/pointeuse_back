@@ -24,13 +24,13 @@ export class CreateProjectDto {
 
     @ApiModelProperty()
     @IsString() readonly idPositionStart: string;
-    
+
     @ApiModelProperty()
     @IsString() readonly idPositionEnd: string;
 
     @ApiModelProperty()
     @IsString() readonly etatProject: string;
-    
+
     @ApiModelProperty()
     @IsString() readonly commentaire: string;
 }
