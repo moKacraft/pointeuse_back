@@ -1,5 +1,4 @@
 import { hash as bcryptHash } from 'bcrypt';
-import { DatabaseConstants } from '@constants/database.constants';
 import { Injectable, HttpException } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
@@ -23,7 +22,7 @@ export class UserService {
     userEntity.email = user.email;
     userEntity.firstname = user.firstname;
     userEntity.lastname = user.lastname;
-    await bcryptHash(user.token, DatabaseConstants.bcrypt.rounds).then((hash) => {
+    await bcryptHash(user.token, 12).then((hash) => {
       userEntity.token = hash;
     });
     userEntity.isAdmin = user.isAdmin;
