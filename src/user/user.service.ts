@@ -1,4 +1,5 @@
 import { hash as bcryptHash } from 'bcrypt';
+import { DatabaseConstants } from '@constants/database.constants';
 import { Injectable, HttpException } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
