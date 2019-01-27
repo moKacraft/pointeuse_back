@@ -9,20 +9,13 @@ services:
 
 before_install:
   # For bcrypt
-  - npm install -g node-gyp
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then cinst -y python2; fi
   # install heroku CLI 
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
-# Install gcc for bcrypt  
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-5
 
 install:
   # install deps
