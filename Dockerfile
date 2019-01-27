@@ -2,6 +2,8 @@ FROM node:9-alpine
 
 WORKDIR /pointeuse
 
+RUN apt-get update && apt-get install -y build-essential && apt-get install -y python
+
 COPY package.json .
 
 RUN npm install
