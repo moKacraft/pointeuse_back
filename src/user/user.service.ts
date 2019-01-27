@@ -1,3 +1,4 @@
+import { bcrypt } from 'bcrypt';
 import { Injectable, HttpException } from '@nestjs/common';
 import { User } from './user.entity';
 import { InjectRepository, TypeOrmModule } from '@nestjs/typeorm';
@@ -20,7 +21,11 @@ export class UserService {
     userEntity.email = user.email;
     userEntity.firstname = user.firstname;
     userEntity.lastname = user.lastname;
-    userEntity.token = user.token;
+
+    // TODO salt is magic number
+    const salt = bcrypt.genSaltSync(10);
+    userEntity.token = bcrypt.hashSync(user.token, salt);
+
     userEntity.isAdmin = user.isAdmin;
     this.userRepository.save(userEntity);
     return userEntity;
