@@ -2,18 +2,27 @@ sudo: required
 
 language: node_js
 node_js:
-  - "10.13.0"
+  - "10.15.0"
 
 services:
   - docker
 
 before_install:
+  # For bcrypt
+  - npm install -g node-gyp
   # install heroku CLI 
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
+# Install gcc for bcrypt  
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
 
 install:
   # install deps
