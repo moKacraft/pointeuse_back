@@ -2,6 +2,7 @@ sudo: required
 
 env:
   - CXX=g++-4.8
+  - LINUX_CXX=g++-4.8
 
 language: node_js
 node_js:
@@ -13,6 +14,8 @@ services:
 before_install:
   # For bcrypt
   - npm install -g node-gyp
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=$LINUX_CXX; $CXX --version; fi;
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then c++ --version; fi;
   # install heroku CLI 
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
