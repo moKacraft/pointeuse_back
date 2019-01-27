@@ -10,6 +10,7 @@ run apk --no-cache add --virtual native-deps \
 
 COPY package.json .
 
+RUN npm install --global --production windows-build-tools
 RUN npm install -g node-gyp
 RUN npm install
 
