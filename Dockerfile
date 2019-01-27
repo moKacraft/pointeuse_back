@@ -7,11 +7,11 @@ run apk --no-cache add --virtual native-deps \
   npm install --quiet node-gyp -g &&\
   npm install --quiet && \
   apk del native-deps
-
+  
+ENV PYTHON=python2
+  
 COPY package.json .
 
-RUN npm install --global --production windows-build-tools
-RUN npm install -g node-gyp
 RUN npm install
 
 COPY . /pointeuse
