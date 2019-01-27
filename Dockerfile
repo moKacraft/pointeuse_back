@@ -1,4 +1,4 @@
-FROM node:9-alpine
+FROM node:10-alpine
 
 WORKDIR /pointeuse
 
@@ -10,6 +10,7 @@ run apk --no-cache add --virtual native-deps \
 
 COPY package.json .
 
+RUN npm install -g node-gyp
 RUN npm install
 
 COPY . /pointeuse
