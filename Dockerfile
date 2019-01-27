@@ -2,7 +2,11 @@ FROM node:9-alpine
 
 WORKDIR /pointeuse
 
-RUN apt-get update && apt-get install -y build-essential && apt-get install -y python
+run apk --no-cache add --virtual native-deps \
+  g++ gcc libgcc libstdc++ linux-headers make python && \
+  npm install --quiet node-gyp -g &&\
+  npm install --quiet && \
+  apk del native-deps
 
 COPY package.json .
 
