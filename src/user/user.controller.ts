@@ -42,7 +42,7 @@ export class UserController {
 
     @Delete('/:_id')
     async delete(@Param('_id') id: string) {
-    return this.userService.delete(id);
+        return this.userService.delete(id);
     }
 
     // @Put('/:_id')

@@ -33,7 +33,7 @@ export class UserService {
 
   async findUserById(id: string): Promise<User> {
     try {
-      const userToReturn = await this.userRepository.findOne(parseInt(id));
+      const userToReturn = await this.userRepository.findOne(parseInt(id, 10));
       if (!userToReturn) {
         throw new HttpException({User: 'not found'}, 401);
       }
